@@ -87,8 +87,7 @@ Sub SendEmail()
             'email send
             Set objOutlook = CreateObject("Outlook.Application")
             Set objMail = objOutlook.CreateItem(0)
-            'Worksheets("MACROS").Range("A41") = strTo
-            'Worksheets("MACROS").Range("A48") = mailList.Count
+            
             With objMail
                 .BCC = strTo
                 .Subject = strSubject

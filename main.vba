@@ -22,6 +22,17 @@ Sub GetConfigValues()
     folderName = Cells(9, 2).Value
    
 End Sub
+Sub CleanGlobalVariables()
+
+    'listaMails = ""
+    'tipoContratacion = ""
+    'numeroContratacion = ""
+    'textoMail = ""
+    'grupoMails = ""
+    'Erase mailList
+    'strPath = ""
+
+End Sub
 
 Sub BuscarMails()
 
@@ -54,9 +65,6 @@ Sub SendEmail()
     GetConfigValues
     BuscarMails
     
-    'Set email properties
-    strSubject = tipoContratacion & " " & numeroContratacion & " - Solicitud de Presupuesto"
-    
     If Len(numeroContratacion) = 1 Then
         numeroContratacion = "000" & numeroContratacion
     End If
@@ -67,6 +75,9 @@ Sub SendEmail()
         numeroContratacion = "0" & numeroContratacion
     End If
     
+    'Set email properties
+    strSubject = tipoContratacion & " " & numeroContratacion & " - Solicitud de Presupuesto"
+    
     attachmentPath = strPath & folderName & "\" & tipoContratacion & " " & numeroContratacion & " - Pliego.pdf"
     
     Dim total As Integer
@@ -75,7 +86,7 @@ Sub SendEmail()
     
     If mailList.Count > 0 Then
         item = 0
-        'iterate through emails to set a limit
+        'armo lista
         For J = 1 To listas
             If mailList.Count < max Then
                 max = mailList.Count
@@ -84,7 +95,7 @@ Sub SendEmail()
                 strTo = strTo & mailList.item(N) & "; "
             Next N
         
-            'email send
+            'mando mail
             Set objOutlook = CreateObject("Outlook.Application")
             Set objMail = objOutlook.CreateItem(0)
             
@@ -110,11 +121,8 @@ Sub SendEmail()
         MsgBox ("Envío Exitoso")
         'CleanGlobalVariables
     Else
-        MsgBox ("No emails found")
+        MsgBox ("No se encontraron mails para enviar")
     End If
 
 End Sub
-
-
-
 

@@ -22,17 +22,6 @@ Sub GetConfigValues()
     folderName = Cells(9, 2).Value
    
 End Sub
-Sub CleanGlobalVariables()
-
-    'listaMails = ""
-    'tipoContratacion = ""
-    'numeroContratacion = ""
-    'textoMail = ""
-    'grupoMails = ""
-    'Erase mailList
-    'strPath = ""
-
-End Sub
 
 Sub BuscarMails()
 
@@ -119,7 +108,7 @@ Sub SendEmail()
         mailList.Clear
         Sheets("MACROS").Activate
         MsgBox ("Envío Exitoso")
-        'CleanGlobalVariables
+        
     Else
         MsgBox ("No se encontraron mails para enviar")
     End If
